@@ -2,6 +2,8 @@ import { View, Text, Button, Alert } from 'react-native';
 import { useState, useEffect } from 'react';
 import * as SQLite from 'expo-sqlite';
 import { Picker } from '@react-native-picker/picker';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 export default function DetailsScreen({ route }) {
   const { id: dia_id, data } = route.params;
@@ -64,7 +66,10 @@ export default function DetailsScreen({ route }) {
   return (
     <View style={{ padding: 20, flex: 1 }}>
       <Text style={{ fontSize: 22, marginBottom: 10 }}>Agendamento</Text>
-      <Text style={{ fontSize: 16, marginBottom: 5 }}>Data: {data}</Text>
+      <Text style={{ fontSize: 16, marginBottom: 5 }}>
+        Data: {format(new Date(`${data}T00:00:00`), "dd/MM/yyyy", { locale: ptBR })}
+
+      </Text>
 
       <Text style={{ marginTop: 15 }}>Cliente:</Text>
       <View

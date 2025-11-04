@@ -112,7 +112,7 @@ export default function HomeScreen({ navigation }) {
               >
                 <Text style={styles.diaButtonText}>
                   {isHoje ? '📅 Hoje - ' : ''}
-                  {format(parseDataLocal(dia.data), "dd 'de' MMMM", { locale: ptBR })}
+                  {format(parseDataLocal(dia.data), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })}
                 </Text>
               </TouchableOpacity>
 
