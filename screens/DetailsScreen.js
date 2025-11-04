@@ -1,4 +1,4 @@
-import { View, Text, Button, Alert } from 'react-native';
+import { SafeAreaViewBase, ScrollView, View, Text, Button, Alert } from 'react-native';
 import { useState, useEffect } from 'react';
 import * as SQLite from 'expo-sqlite';
 import { Picker } from '@react-native-picker/picker';
@@ -64,7 +64,11 @@ export default function DetailsScreen({ route }) {
   }
 
   return (
-    <View style={{ padding: 20, flex: 1 }}>
+    <ScrollView style={{ flex: 1 }}
+      contentContainerStyle={{
+        padding: 20,
+        paddingBottom: 100,
+      }}>
       <Text style={{ fontSize: 22, marginBottom: 10 }}>Agendamento</Text>
       <Text style={{ fontSize: 16, marginBottom: 5 }}>
         Data: {format(new Date(`${data}T00:00:00`), "dd/MM/yyyy", { locale: ptBR })}
@@ -121,7 +125,7 @@ export default function DetailsScreen({ route }) {
           <Button title={hora.hora} onPress={() => agendar(hora.id)} />
         </View>
       ))}
-    </View>
+    </ScrollView>
   );
 }
 
