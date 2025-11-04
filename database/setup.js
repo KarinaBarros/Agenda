@@ -75,6 +75,21 @@ export async function initDatabase() {
     }
   }
 
+    // 🕒 Inserir horários de 8:00 até 17:00, de meia em meia hora
+  const horarios = [];
+  for (let hora = 8; hora <= 17; hora++) {
+    for (let min = 0; min < 60; min += 30) {
+      if (hora === 17 && min > 0) break; // não passar das 17h
+      const hStr = String(hora).padStart(2, '0');
+      const mStr = String(min).padStart(2, '0');
+      horarios.push(`${hStr}:${mStr}`);
+    }
+  }
+
+  for (const hora of horarios) {
+    await db.runAsync('INSERT OR IGNORE INTO horarios (hora) VALUES (?)', [hora]);
+  }
+
   console.log('✅ Banco inicializado com sucesso!');
 }
 
